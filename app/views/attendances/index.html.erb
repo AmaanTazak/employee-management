@@ -1,0 +1,33 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Employee Management Title with Icon -->
+    <a class="navbar-brand" href="<%= employees_path %>">
+      <i class="fas fa-briefcase"></i> Employee Management
+    </a>
+</div>
+</nav>
+<div class="container mt-5">
+<table class="table table-bordered table-striped">
+    <thead class="bg-dark text-light text-center">
+    <tr>
+      <th>Date</th>
+      <th>Check In</th>
+      <th>Check Out</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendances.each do |attendance| %>
+      <tr>
+        <td><%= attendance.date %></td>
+        <td><%= attendance.check_in %></td>
+        <td><%= attendance.check_out %></td>
+        <td><%= attendance.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Add Attendance", new_employee_attendance_path(@employee), class: "btn btn-dark rounded-0" %>
+<%= link_to "Back to Employees", employees_path, class: "btn btn-outline-dark rounded-0" %>
+</div>

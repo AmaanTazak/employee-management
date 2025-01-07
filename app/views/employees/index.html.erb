@@ -1,0 +1,73 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Employee Management Title with Icon -->
+    <a class="navbar-brand" href="<%= employees_path %>">
+      <i class="fas fa-briefcase"></i> Employee Management
+    </a>
+    <%= search_form_for @q, url: employees_path, method: :get, class: "d-flex flex-wrap" do |f| %>
+      <div class="d-flex flex-wrap">
+        <%= f.search_field :first_name_or_last_name_cont,
+            placeholder: "Search by name...",
+            class: "form-control me-2 search-field rounded-0 w-auto" %>
+        <%= f.select :department_eq, Employee.distinct.pluck(:department),
+            { include_blank: "All Departments" },
+            class: "form-select me-2 filter-field rounded-0 w-auto" %>
+        <%= f.select :position_eq, Employee.distinct.pluck(:position),
+            { include_blank: "All Positions" },
+            class: "form-select me-2 filter-field rounded-0 w-auto" %>
+        <!-- Search Button with Icon -->
+        <%= f.submit class: "btn btn-dark btn-sm rounded-0" %>
+      </div>
+    <% end %>
+  </div>
+</nav>
+
+<div class="container-fluid mt-4">
+  <div class="d-flex justify-content-end mb-3">
+    <!-- Add New Employee Button -->
+    <%= link_to new_employee_path, class: "btn btn-outline-dark btn-sm rounded-0" do %>
+      <i class="fas fa-plus"></i> New
+    <% end %>
+  </div>
+
+ <p class = "text-success"><%= flash[:notice] %></p>
+  <table class="table table-bordered table-striped w-100">
+    <thead class="bg-dark text-light text-center">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Position</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Hired On</th>
+        <th>Attendance</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr>
+          <td><%= "#{employee.first_name} #{employee.last_name}" %></td>
+          <td><%= employee.email %></td>
+          <td><%= employee.position %></td>
+          <td><%= employee.department %></td>
+          <td><%= number_to_currency(employee.salary, unit: "₹", format: "%u %n") %></td>
+          <td><%= employee.hired_on %></td>
+            <td class="text-center">
+            <%= link_to employee_attendances_path(employee_id: employee.id), class: "btn btn-sm text-success" do %>
+              <i class="fas fa-calendar-check"></i>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <%= link_to employee_path(employee), class: "btn text-info" do %>
+              <i class="fas fa-eye"></i>
+            <% end %>
+            <%= link_to edit_employee_path(employee), class: "btn text-warning" do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+           </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,9 @@
+.dropdown-item:hover{
+	background-color: grey;
+	color: white;
+}
+.navbar-brand i {
+  font-size: 1.5em; /* Adjust icon size */
+  margin-right: 8px; /* Adds space between the icon and text */
+}
+
