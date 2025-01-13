@@ -12,7 +12,7 @@ class AttendancesController < ApplicationController
   def create
     @attendance = @employee.attendances.new(attendance_params)
     if @attendance.save
-      flash[:success] = "Attendance recorded successfully."
+      flash[:notice] = "Attendance recorded successfully."
       redirect_to employee_attendances_path(@employee)
     else
       flash[:error] = "Failed to record attendance."

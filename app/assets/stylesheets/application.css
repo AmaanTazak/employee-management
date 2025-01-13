@@ -6,4 +6,32 @@
   font-size: 1.5em; /* Adjust icon size */
   margin-right: 8px; /* Adds space between the icon and text */
 }
+.attendance{
+	font-size: 1.1em;
+}
+.remove{
+	font-size: 1.5em;
+}
+.sign_out{
+	font-size: 1.2em;
+}
+/* Sidebar Profile Button */
+.btn-primary {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
 
+/* Sidebar Links */
+.offcanvas-body .list-group-item {
+  font-size: 1rem;
+  border: none;
+}
+
+.offcanvas-body .list-group-item:hover {
+  background-color: #f8f9fa;
+}
+select.custom-hover:hover {
+  background-color: #f8f9fa !important;
+  border-color: #007bff !important;
+  color: #333 !important;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5) !important;
+}

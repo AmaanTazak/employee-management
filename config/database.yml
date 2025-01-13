@@ -26,3 +26,12 @@ production:
   port: <%= ENV.fetch("DATABASE_PORT", 5432) %>
   url: <%= ENV["DATABASE_URL"] %>
   pool: 5
+
+  cable:
+    adapter: postgresql
+    database: <%= ENV.fetch("CABLE_DATABASE_NAME", "employee_management_system_production_cable") %>
+    username: <%= ENV.fetch("CABLE_DATABASE_USER", "postgres") %>
+    password: <%= ENV.fetch("CABLE_DATABASE_PASSWORD", "root") %>
+    host: <%= ENV.fetch("CABLE_DATABASE_HOST", "localhost") %>
+    port: <%= ENV.fetch("CABLE_DATABASE_PORT", 5432) %>
+    pool: 5

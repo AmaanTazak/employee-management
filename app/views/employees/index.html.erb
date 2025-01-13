@@ -1,26 +1,45 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-light shadow-sm">
   <div class="container-fluid">
     <!-- Employee Management Title with Icon -->
-    <a class="navbar-brand" href="<%= employees_path %>">
+    <a class="navbar-brand fw-bold" href="<%= root_path %>">
       <i class="fas fa-briefcase"></i> Employee Management
     </a>
-    <%= search_form_for @q, url: employees_path, method: :get, class: "d-flex flex-wrap" do |f| %>
-      <div class="d-flex flex-wrap">
-        <%= f.search_field :first_name_or_last_name_cont,
-            placeholder: "Search by name...",
-            class: "form-control me-2 search-field rounded-0 w-auto" %>
-        <%= f.select :department_eq, Employee.distinct.pluck(:department),
-            { include_blank: "All Departments" },
-            class: "form-select me-2 filter-field rounded-0 w-auto" %>
-        <%= f.select :position_eq, Employee.distinct.pluck(:position),
-            { include_blank: "All Positions" },
-            class: "form-select me-2 filter-field rounded-0 w-auto" %>
-        <!-- Search Button with Icon -->
-        <%= f.submit class: "btn btn-dark btn-sm rounded-0" %>
-      </div>
-    <% end %>
+
+    <div class="d-flex">
+      <!-- Search Form -->
+      <%= search_form_for @q, url: employees_path, method: :get, class: "d-flex flex-wrap me-3" do |f| %>
+        <div class="d-flex flex-wrap">
+          <%= f.search_field :first_name_or_last_name_cont,
+              placeholder: "Search by name...",
+              class: "form-control me-2 search-field rounded-0 w-auto" %>
+          <%= f.select :department_eq, Employee.distinct.pluck(:department),
+              { include_blank: "All Departments" },
+              class: "form-select me-2 filter-field rounded-0 w-auto" %>
+          <%= f.select :position_eq, Employee.distinct.pluck(:position),
+              { include_blank: "All Positions" },
+              class: "form-select me-2 filter-field rounded-0 w-auto" %>
+          <!-- Search Button with Icon -->
+          <%= f.submit class: "btn btn-dark btn-sm rounded-0" %>
+        </div>
+      <% end %>
+
+      <!-- Sign Out Button -->
+      <% if user_signed_in? %>
+        <%= button_to destroy_user_session_path,
+            method: :delete,
+            data: { confirm: "Are you sure you want to sign out?" },
+            class: "btn text-danger fw-bold" do %>
+          Signout
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, class: "btn btn-outline-primary btn-sm rounded-0 ms-3" do %>
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </nav>
+
 
 <div class="container-fluid mt-4">
   <div class="d-flex justify-content-end mb-3">
@@ -29,9 +48,7 @@
       <i class="fas fa-plus"></i> New
     <% end %>
   </div>
-
- <p class = "text-success"><%= flash[:notice] %></p>
-  <table class="table table-bordered table-striped w-100">
+  <table class="table table-bordered table-hover table-striped w-100">
     <thead class="bg-dark text-light text-center">
       <tr>
         <th>Name</th>
@@ -47,7 +64,7 @@
     <tbody>
       <% @employees.each do |employee| %>
         <tr>
-          <td><%= "#{employee.first_name} #{employee.last_name}" %></td>
+          <td><%= employee.name %></td>
           <td><%= employee.email %></td>
           <td><%= employee.position %></td>
           <td><%= employee.department %></td>
@@ -55,7 +72,7 @@
           <td><%= employee.hired_on %></td>
             <td class="text-center">
             <%= link_to employee_attendances_path(employee_id: employee.id), class: "btn btn-sm text-success" do %>
-              <i class="fas fa-calendar-check"></i>
+              <i class="fas fa-calendar-check attendance"></i>
             <% end %>
           </td>
           <td class="text-center">

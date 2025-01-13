@@ -6,33 +6,41 @@
 </div>
 <div class = "container">
 <%= form_with model: [@employee, @attendance], local: true do |f| %>
-<div class = "card-body">
+
+<div class = "row">
   <div class="mb-3 col-lg-6">
     <%= f.label :date %>
     <%= f.date_field :date, class: "form-control" %>
   </div>
-
-  <div class="mb-3 col-lg-6">
-    <%= f.label :check_in %>
-    <%= f.datetime_local_field :check_in, class: "form-control" %>
-  </div>
-</div>
-<div class = "card-body">
-  <div class="mb-3 col-lg-6">
-    <%= f.label :check_out %>
-    <%= f.datetime_local_field :check_out, class: "form-control" %>
-  </div>
-
   <div class="mb-3 col-lg-6">
     <%= f.label :status %>
     <%= f.select :status, ["Present", "Absent", "On Leave"], { include_blank: "Select Status" }, class: "form-select" %>
   </div>
+   
 </div>
+<div class = "row">
+  <div class="mb-3 col-lg-6">
+    <%= f.label :check_in %>
+    <%= f.datetime_local_field :check_in, class: "form-control" %>
+  </div>
+
+  <div class="mb-3 col-lg-6">
+    <%= f.label :check_out %>
+    <%= f.datetime_local_field :check_out, class: "form-control" %>
+  </div>
+  </div>
 
   <%= f.submit "Save Attendance", class: "btn btn-dark rounded-0" %>
-  <%= link_to "Back to Employees", employees_path, class: "btn btn-outline-dark rounded-0" %>
+  <%= link_to "Back to Employees", root_path, class: "btn btn-outline-dark rounded-0" %>
 
 <% end %>
 </div>
 
 </div>
+
+<%# _____________________________________________________________________ %>
+
+
+
+
+  

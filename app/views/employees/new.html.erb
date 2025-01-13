@@ -1,11 +1,5 @@
-<div class ="col-lg-12">
-<div class = "card  mb-5 rounded-0">
-	<div class = "card-body bg-dark text-light">
-      <h2 class = "text-center">Add New Employee</h2>
-	</div>
-</div>
-<div class = "container">
-<%= render "form", employee: @employee %>
-</div>
+<%= render 'shared/header' %>
 
+<div class = "container mt-5">
+<%= render "form", employee: @employee %>
 </div>

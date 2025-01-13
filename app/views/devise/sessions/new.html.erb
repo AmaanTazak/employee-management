@@ -1,0 +1,51 @@
+<!-- app/views/devise/sessions/new.html.erb -->
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-4">
+      <!-- Card Container -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white text-center">
+          <h4>Login</h4>
+        </div>
+        <div class="card-body">
+          <!-- Display Flash Message -->
+          <% if flash[:notice] %>
+            <div class="alert alert-info">
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+          <div class="mb-3">
+    <%= f.label :role, "Login as", class: "form-label" %>
+    <%= f.select :role, [["Admin", "admin"], ["Employee", "employee"]], {}, class: "form-select" %>
+  </div>
+            
+            <!-- Email Field -->
+            <div class="mb-3">
+              <%= f.label :email, class: 'form-label' %>
+              <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Enter your email', required: true %>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-3">
+              <%= f.label :password, class: 'form-label' %>
+              <%= f.password_field :password, class: 'form-control', placeholder: 'Enter your password', required: true %>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mb-3">
+              <%= f.submit "Login", class: 'btn btn-outline-primary rounded-0' %>
+            </div>
+          <% end %>
+
+          <!-- Forgot Password and Sign Up Links -->
+          <div class="text-center mt-3">
+            <%= link_to "Forgot your password?", new_user_password_path, class: "d-block" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "d-block mt-2" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

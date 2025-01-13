@@ -1,0 +1,22 @@
+<div class="container">
+<h1 class="text-center mb-4">Add New Admin</h1>
+
+<%= form_with model: @admin, url: admins_path, local: true, class: "form" do |f| %>
+  <div class="mb-3">
+    <%= f.label :email, class: "form-label" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password, class: "form-label" %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password_confirmation, class: "form-label" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.submit "Create Admin", class: "btn btn-dark rounded-0" %>
+    <%= link_to "Back to Home", root_path, class: "btn btn-outline-dark rounded-0" %>
+  </div>
+<% end %>
+</div>

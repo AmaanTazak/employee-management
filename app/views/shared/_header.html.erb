@@ -1,0 +1,23 @@
+<nav class="navbar navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <!-- Employee Management Title with Icon -->
+    <a class="navbar-brand fw-bold" href="<%= root_path %>">
+      <i class="fas fa-briefcase"></i> Employee Management
+    </a>
+
+    <div class="d-flex">
+      <!-- Sign Out Button -->
+      <% if user_signed_in? %>
+        <%= button_to destroy_user_session_path,
+            method: :delete, data: { confirm: "Are you sure you want to sign out?" },
+            class: "text-danger btn fw-bold", style: "font-family: 'Helvetica', sans-serif;" do %>
+          Signout
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, class: "btn btn-outline-primary btn-sm rounded-0 ms-3" do %>
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,75 @@
+<%= render 'shared/header' %>
+
+<div class="container mt-5">
+  <!-- Page Header -->
+  <h1 class="text-center mb-4 fw-bold">Welcome<span class="text-primary"> <%= current_user.email %></span></h1>
+
+  <% if current_user.admin? %>
+    <!-- Admin-only links -->
+    <div class="text-center">
+      <%= link_to "View All Employees", employees_path, class: "btn btn-dark rounded-0 mb-3 me-2" %>
+      <%= link_to new_employee_path, class: "btn btn-outline-dark rounded-0 mb-3" do %>
+        <i class="fas fa-plus"></i> Add Employee
+      <% end %>
+    </div>
+    <div class="position-fixed bottom-0 end-0 m-4">
+  <button class="btn btn-primary rounded-circle p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar" aria-controls="adminSidebar">
+    <i class="fas fa-user fa-2x"></i>
+  </button>
+</div>
+
+<!-- Sidebar -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="adminSidebar" aria-labelledby="adminSidebarLabel">
+  <div class="offcanvas-header bg-dark text-light">
+    <h5 class="offcanvas-title" id="adminSidebarLabel">Admin Menu</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- Admin Links -->
+    <ul class="list-group">
+      <li class="list-group-item">
+        <%= link_to "Manage Employees", employees_path, class: "text-dark text-decoration-none" %>
+      </li>
+      <li class="list-group-item">
+    <%= link_to "Manage Admins",admins_path, class: "text-dark text-decoration-none" %>
+  </li>
+      <li class="list-group-item">
+        <%= link_to "Add Employee", new_employee_path, class: "text-dark text-decoration-none" %>
+      </li>
+     
+      <li class="list-group-item">
+        <%= button_to destroy_user_session_path, method: :delete, data: { confirm: "Are you sure you want to sign out?" }, class: "btn btn-danger w-100 rounded-0" do %>
+          <i class="fas fa-sign-out-alt"></i> Sign Out
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <% elsif current_user.employee? %>
+    <!-- Employee Table -->
+    <div class="table-responsive shadow-sm rounded">
+      <table class="table table-hover table-striped align-middle">
+        <thead class="bg-dark text-light">
+          <tr>
+            <th>Name</th>
+            <th class="text-center">Attendance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @employees.each do |employee| %>
+            <tr>
+              <td><%= employee.name %></td>
+              <td class="text-center">
+                <%= link_to employee_attendances_path(employee_id: employee.id), class: "btn btn-sm btn-outline-success rounded-0" do %>
+                  <i class="fas fa-calendar-check"></i> View Attendance
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
+

@@ -1,42 +1,54 @@
-<div class="container">
-  <div class="card mt-2 mb-5 rounded-0">
-    <div class="card-body">
-      <h2 class="text-center">Employee Details</h2>
-      <div class="row mt-5">
+<%= render 'shared/header' %>
+
+<div class="container mt-5">
+  <!-- Card Container -->
+  <div class="card mt-2 mb-5 rounded-0 shadow">
+    <!-- Header Section -->
+    <div class="card-body bg-dark text-light">
+      <h2 class="fw-bold mb-0"><%= @employee.name %></h2>
+    </div>
+
+    <!-- Employee Details Section -->
+    <div class="container-fluid bg-light py-4">
+      <div class="row">
         <!-- Employee Info Column -->
-        <div class="col-lg-6 col-md-12">
-          <p class="lead"><strong>Name: </strong><%= "#{@employee.first_name} #{@employee.last_name}" %></p>
-          <p class="lead"><strong>Email: </strong><%= @employee.email %></p>
-          <p class="lead"><strong>Position: </strong><%= @employee.position %></p>
-          <p class="lead"><strong>Department: </strong><%= @employee.department %></p>
-          <p class="lead"><strong>Salary: </strong><%= @employee.salary %></p>
-          <p class="lead"><strong>Hired on: </strong><%= @employee.hired_on %></p>
+        <div class="col-lg-6 col-md-12 mb-4">
+          <p class="lead mb-3"><strong>Email:</strong> <%= @employee.email %></p>
+          <p class="lead mb-3"><strong>Position:</strong> <%= @employee.position %></p>
+          <p class="lead mb-3"><strong>Department:</strong> <%= @employee.department %></p>
+          <p class="lead mb-3"><strong>Salary:</strong> <%= number_to_currency(@employee.salary, unit: "₹", format: "%u %n") %></p>
+          <p class="lead mb-3"><strong>Hired On:</strong> <%= @employee.hired_on.strftime("%d-%m-%Y") %></p>
         </div>
-        
+
         <!-- Employee Image Column -->
         <div class="col-lg-6 col-md-12 text-center">
           <% if @employee.image.attached? %>
-            <%= image_tag @employee.image.variant(resize_to_limit: [300, 300]), class: 'img-fluid' %>
+            <%= image_tag @employee.image.variant(resize_to_limit: [300, 300]), class: "img-fluid rounded shadow-sm" %>
           <% else %>
-            <p>No photo available</p>
+            <div class="placeholder-image d-flex justify-content-center align-items-center border rounded mx-auto" style="width: 300px; height: 300px; background-color: #f8f9fa;">
+              <i class="fas fa-user fa-5x text-muted"></i>
+            </div>
+            <p class="text-muted mt-2">No photo available</p>
           <% end %>
         </div>
       </div>
 
       <!-- Buttons Section -->
       <div class="d-flex justify-content-between mt-4 flex-wrap">
-        <div>
-          <%= link_to "Edit Employee", edit_employee_path(@employee), class: "btn btn-dark rounded-0" %>
-          <%= link_to "Back to Employees", employees_path, class: "btn btn-outline-dark rounded-0" %>
+        <!-- Left Buttons -->
+        <div class="mb-3">
+          <%= link_to "Edit Employee", edit_employee_path(@employee), class: "btn btn-dark rounded-0 me-2" %>
+          <%= link_to "Back to Employees", root_path, class: "btn btn-outline-dark rounded-0" %>
         </div>
-        <div>
-       <%= button_to employee_path(@employee), 
+
+        <!-- Right Buttons -->
+        <div class="mb-3">
+          <%= button_to employee_path(@employee), 
               method: :delete, 
               data: { confirm: "Are you sure you want to delete this employee?" }, 
-              class: "btn btn-danger" do %>
-           Remove Employee <i class="fas fa-trash"></i> 
-<% end %>
-
+              class: "btn btn-outline-danger rounded-0" do %>
+            <i class="fas fa-trash"></i> Delete
+          <% end %>
         </div>
       </div>
     </div>
