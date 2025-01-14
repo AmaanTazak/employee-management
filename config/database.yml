@@ -27,6 +27,14 @@ production:
   host: <%= ENV['RENDER_DB_HOST'] || 'localhost' %>
   url: <%= ENV['DATABASE_URL'] %>
   port: 5432
+
+cable:
+  <<: *default
+  database: <%= ENV['RENDER_CABLE_DB'] %>
+  username: <%= ENV['RENDER_DB_USER'] %>
+  password: <%= ENV['RENDER_DB_PASSWORD'] %>
+  host: <%= ENV['RENDER_DB_HOST'] || 'localhost' %>
+  port: 5432
   
 
   
