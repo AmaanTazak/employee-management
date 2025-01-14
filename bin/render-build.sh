@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # exit on error
 set -o errexit
+#!/usr/bin/env bash
+set -e
+chmod +x bin/* # Ensure executables have the correct permissions
+
 
 bundle install
 bundle exec rails assets:precompile
