@@ -26,4 +26,4 @@ production:
   password: <%= ENV['9d01pUvacGkqd4q6Fooxx5jurcT3ycH2'] %>
   host: <%= ENV['dpg-ctuj3qdds78s73fook3g-a'] %>
   port: 5432
-  url: <%= ENV['DATABASE_URL']
+  url: <%= ENV['DATABASE_URL'] %>
