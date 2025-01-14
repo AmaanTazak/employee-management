@@ -23,8 +23,10 @@ production:
   encoding: unicode
   database: <%= ENV['render_employee_management'] %>
   username: <%= ENV['render_employee_management_user'] %>
-  password: <%= ENV['9d01pUvacGkqd4q6Fooxx5jurcT3ycH2'] %>
-  host: <%= ENV['dpg-ctuj3qdds78s73fook3g-a'] %>
+  password: <%= ENV['render_employee_management_password'] %>
+  host: <%= ENV['RENDER_DB_HOST'] || 'localhost' %>
   url: <%= ENV['DATABASE_URL'] %>
   port: 5432
+  
+
   
