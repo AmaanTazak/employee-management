@@ -18,20 +18,10 @@ test:
   database: employee_management_system_test
 
 production:
-  <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME", "employee_management_system_production") %>
-  username: <%= ENV.fetch("DATABASE_USER", "postgres") %>
-  password: <%= ENV.fetch("DATABASE_PASSWORD", "root") %>
-  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
-  port: <%= ENV.fetch("DATABASE_PORT", 5432) %>
-  url: <%= ENV["DATABASE_URL"] %>
-  pool: 5
-
-  cable:
-    adapter: postgresql
-    database: <%= ENV.fetch("CABLE_DATABASE_NAME", "employee_management_system_production_cable") %>
-    username: <%= ENV.fetch("CABLE_DATABASE_USER", "postgres") %>
-    password: <%= ENV.fetch("CABLE_DATABASE_PASSWORD", "root") %>
-    host: <%= ENV.fetch("CABLE_DATABASE_HOST", "localhost") %>
-    port: <%= ENV.fetch("CABLE_DATABASE_PORT", 5432) %>
-    pool: 5
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['render_employee_management'] %>
+  username: <%= ENV['render_employee_management_user'] %>
+  password: <%= ENV['9d01pUvacGkqd4q6Fooxx5jurcT3ycH2'] %>
+  host: <%= ENV['dpg-ctuj3qdds78s73fook3g-a'] %>
+  port: 5432
