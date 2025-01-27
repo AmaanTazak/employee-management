@@ -2,9 +2,9 @@
 
 # Create an admin user with a default email and password
 admin = User.create!(
-  email: "admin@example.com",
-  password: "password123", 
-  password_confirmation: "password123",
+  email: "admin@gmail.com",
+  password: "admin123", 
+  password_confirmation: "admin123",
   role: "admin"
 )
 
