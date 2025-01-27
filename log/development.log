@@ -31263,3 +31263,8 @@ Writing activestorage.esm-f2909226.js
 Writing activestorage-32201f68.js
 Writing rails-ujs.esm-e925103b.js
 Writing rails-ujs-20eaf715.js
+  [1m[36mActiveRecord::SchemaMigration Load (4.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='EmployeeManagementSystem'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN /*application='EmployeeManagementSystem'*/[0m
+  [1m[36mUser Exists? (9.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'admin@gmail.com' LIMIT 1 /*application='EmployeeManagementSystem'*/[0m
+  [1m[36mUser Create (18.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "role") VALUES ('admin@gmail.com', '$2a$12$fnBwWCkRcyZinqrM/3ubOOPZO058H9k3q6/ttNdqmgk3XbcQ0pw6i', NULL, NULL, NULL, '2025-01-27 10:15:50.417980', '2025-01-27 10:15:50.417980', 'admin') RETURNING "id" /*application='EmployeeManagementSystem'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='EmployeeManagementSystem'*/[0m
