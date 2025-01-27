@@ -28,6 +28,16 @@ class AdminsController < ApplicationController
     end
   end
 
+  def run_seeds
+    # Your seed logic here (for example, creating an admin user)
+    if User.count == 0 # Only seed if there are no users yet
+      User.create!(email: 'admin@gmail.com', password: 'password123', role: 'admin') # Example admin seed
+      render plain: "Seeds have been successfully run!"
+    else
+      render plain: "Seeds already run. Skipping."
+    end
+  end
+
   private
 
   def admin_params
