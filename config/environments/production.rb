@@ -1,8 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  
- config.cache_classes = true
+
 config.eager_load = true
 config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 config.assets.compile = false
