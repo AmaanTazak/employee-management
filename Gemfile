@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.14'
 
 gem 'ransack'
 gem 'devise'
